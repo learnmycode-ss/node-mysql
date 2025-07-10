@@ -1,0 +1,236 @@
+<%-include('component/header')%>
+<%-include('component/sidebar')%>
+
+
+            <!-- Main Content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Edit Contact</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group me-2">
+                            <a href="/" class="btn btn-sm btn-outline-secondary">
+                                <i class="fas fa-times"></i> Cancel
+                            </a>
+                            <button type="submit" form="contactForm" class="btn btn-sm btn-primary">
+                                <i class="fas fa-save"></i> Save Changes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="contactForm" action="/update-contact" method="post" enctype="multipart/form-data">
+                      <input type="hidden" name="id" value="<%=d.id%>" />
+
+                    <div class="row mb-4">
+                        <div class="col-md-12 text-center">
+                            <div class="profile-avatar mb-3" id="avatarContainer">
+                                <% if (d && d.profileUpload) { %>
+                                    <img src="<%= d.profileUpload %>" height="500px" class="profile-avatar" alt="Profile Image">
+                                <% } else { %>
+                                    <div class="initials-placeholder">+</div>
+                                <% } %>
+                            </div>
+                            <input type="file" class="d-none" id="profileUpload" name="profileUpload" accept="image/*">
+                            <button type="button" class="btn btn-outline-secondary" onclick="document.getElementById('profileUpload').click()">
+                                <i class="fas fa-camera me-2"></i>Add Photo
+                            </button>
+                            <input type="hidden" name="oldProfileUpload" value="<%= d.profileUpload %>">
+
+                            <p class="text-muted mt-2">JPEG or PNG, 500x500 px recommended</p>
+                        </div>
+                    </div>
+
+                    <!-- Basic Information -->
+                    <div class="card form-section">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Basic Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="firstName" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" name="firstName" id="firstName" value="<%=d.firstName%>" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="lastName" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" name="lastName" id="lastName" value="<%=d.lastName%>" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="birthday" class="form-label">Birthday</label>
+                                    <input type="date" class="form-control" name="birthday" id="birthday" value="<%d.birthday%>">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="gender" class="form-label">Gender</label>
+                                    <select class="form-select" value="<%=d.gender%>" name="gender" id="gender">
+                                        <option value="male" selected>Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="jobTitle" class="form-label">Job Title</label>
+                                    <input type="text" class="form-control" name="jobTitle" id="jobTitle" value="<%=d.jobTitle%>">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="company" class="form-label">Company</label>
+                                    <input type="text" class="form-control" name="company" id="company" value="<%=d.company%>">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="card form-section">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="fas fa-address-book me-2"></i>Contact Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="phone" class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" name="phone" id="phone" value="<%=d.phone%>">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="mobile" class="form-label">Mobile</label>
+                                    <input type="tel" class="form-control" name="mobile" id="mobile" value="<%=d.mobile%>">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" value="<%=d.email%>">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="website" class="form-label">Website</label>
+                                    <input type="url" class="form-control" name="website" id="website" value="<%=d.website%>">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Address</label>
+                                <input type="text" class="form-control" name="address" id="address" value="<%=d.address%>">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="city" class="form-label">City</label>
+                                    <input type="text" class="form-control" name="city" id="city" value="<%=d.city%>">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="state" class="form-label">State</label>
+                                    <input type="text" class="form-control" name="state" id="state" value="<%=d.state%>">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="zip" class="form-label">Zip Code</label>
+                                    <input type="text" class="form-control" name="zip" id="zip" value="<%=d.zip%>">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Media -->
+                    <div class="card form-section">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="fas fa-network-wired me-2"></i>Social Media</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="twitter" class="form-label">Twitter</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">@</span>
+                                        <input type="text" class="form-control" name="twitter" id="twitter" value="<%=d.twitter%>">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="facebook" class="form-label">Facebook</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">facebook.com/</span>
+                                        <input type="text" class="form-control" name="facebook" id="facebook" value="<%=d.facebook%>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="linkedin" class="form-label">LinkedIn</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">linkedin.com/in/</span>
+                                        <input type="text" class="form-control" name="linkedin" id="linkedin" value="<%=d.linkedin%>">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="instagram" class="form-label">Instagram</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">@</span>
+                                        <input type="text" class="form-control" name="instagram" id="instagram" value="<%=d.instagram%>">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notes -->
+                    <div class="card form-section">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="fas fa-sticky-note me-2"></i>Notes</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="notes" class="form-label">Additional Notes</label>
+                                <textarea class="form-control" id="notes" rows="4"><%=d.notes%></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="d-flex justify-content-between">
+                        <a type="button" href="/delete?id=<%=d.id%>" class="btn btn-outline-danger">
+                            <i class="fas fa-trash"></i> Delete Contact
+                        </a>
+                        <div>
+                            <button type="button" class="btn btn-outline-secondary me-2">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Save Changes
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Initialize tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+        
+        // Profile image click handler
+        document.querySelector('.profile-avatar').addEventListener('click', function() {
+            document.getElementById('profileUpload').click();
+        });
+         document.getElementById('profileUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const avatarContainer = document.getElementById('avatarContainer');
+                    avatarContainer.innerHTML = '';
+                    const img = document.createElement('img');
+                    img.src = event.target.result;
+                    img.className = 'profile-avatar';
+                    img.alt = 'Profile Preview';
+                    img.height = 500;
+                    avatarContainer.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+    </script>
+<%-include('component/footer')%>

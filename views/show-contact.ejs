@@ -1,0 +1,108 @@
+<%-include('component/header')%>
+<%-include('component/sidebar')%>
+
+            <!-- Main Content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Contact Details</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group me-2">
+                            <a href="/" class="btn btn-sm btn-outline-secondary">
+                                <i class="fas fa-arrow-left"></i> Back to List
+                            </a>
+                            <a href="/update-contact?id=<%=d.id%>" class="btn btn-sm btn-primary">
+                                <i class="fas fa-edit"></i> Edit Contact
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Contact Profile -->
+                <div class="row mb-4">
+                    <div class="col-md-4 text-center">
+                        <img src="<%=d.profileUpload%>" alt="Profile" width="500" class="profile-avatar mb-3">
+                        <h3><%=d.firstName%> <%=d.lastName%></h3>
+                        <p class="text-muted"><%=d.jobTitle%> at <%=d.company%></p>
+                        
+                        <div class="d-flex justify-content-center mb-3">
+                            <button class="btn btn-outline-primary me-2">
+                                <i class="fas fa-phone"></i> Call
+                            </button>
+                            <button class="btn btn-outline-success me-2">
+                                <i class="fas fa-envelope"></i> Email
+                            </button>
+                            <button class="btn btn-outline-secondary">
+                                <i class="fas fa-star"></i> Favorite
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-8">
+                        <div class="card contact-info-card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-info-circle me-2"></i>Basic Information</h5>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p><strong>First Name:</strong> <%=d.firstName%></p>
+                                        <p><strong>Last Name:</strong> <%=d.lastName%></p>
+                                        <p><strong>Birthday:</strong> <%=d.birthday%></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><strong>Gender:</strong> <%=d.gender%></p>
+                                        <p><strong>Job Title:</strong> <%=d.jobTitle%></p>
+                                        <p><strong>Company:</strong><%=d.company%></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card contact-info-card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-address-book me-2"></i>Contact Information</h5>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p><strong>Phone:</strong> <%=d.phone%></p>
+                                        <p><strong>Mobile:</strong> <%=d.mobile%></p>
+                                        <p><strong>Email:</strong> <%=d.email%></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><strong>Address:</strong> <%=d.address%></p>
+                                        <p><strong>City:</strong> <%=d.city%></p>
+                                        <p><strong>Zip Code:</strong> <%=d.zip%></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card contact-info-card">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-network-wired me-2"></i>Social Media</h5>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p><strong>Twitter:</strong> <%=d.twitter%></p>
+                                        <p><strong>Facebook:</strong> facebook.com/<%=d.facebook%></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><strong>LinkedIn:</strong> linkedin.com/in/<%=d.linkedin%></p>
+                                        <p><strong>Instagram:</strong> @<%=d.instagram%></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notes Section -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-sticky-note me-2"></i>Notes</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><%=d.notes%></p>
+                        <p class="mb-0"><small class="text-muted">Last updated: <%=d%></small></p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+<%-include('component/footer')%>
