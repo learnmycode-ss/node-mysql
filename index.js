@@ -14,6 +14,9 @@ const storage = multer.diskStorage({
     const uniqueName = Date.now() + " - " + Math.round(Math.random() * 1e9);
     cb(null, uniqueName + path.extname(file.originalname));
   },
+  limit: {
+    fileSize: 5 * 1024 * 1024,
+  },
 });
 
 const upload = multer({ storage: storage });
@@ -315,7 +318,7 @@ app.get("/groups", (r, res) => {
   con.query(sql, (e, result) => {
     if (e) throw e;
     // console.log(result);
-    res.render("group", {  g : result });
+    res.render("group", { g: result });
   });
 });
 
@@ -333,28 +336,37 @@ app.get("/create-group", (r, res) => {
   });
 });
 
-
-app.post("/create-group", upload.single("groupUpload"),(r, res) => {
-  console.log(r.body);
-  const filepath = r.file ? "/upload/" + r.file.filename : "";
- const members = r.body["members[]"] || [];
+app.post("/create-group", upload.single("profileUpload"), (r, res) => {
+  console.log("File received:", r.file);
+  console.log("Body received:", r.body);
+  const filepath = r.file ? "upload/" + r.file.filename : "";
+  const members = r.body["members[]"] || [];
+  if(!Array.isArray(members)){
+    members = [members];
+  }
   const conId = members.join(","); // Joins as "2,4"
   let sql = `INSERT INTO groups(groupUpload, groupName, groupDescription, member) VALUES ('${filepath}','${r.body.groupName}','${r.body.groupDescription}','${conId}')`;
-  con.query(sql,(e,result)=>{
-    if(e) throw e;
+  con.query(sql, (e, result) => {
+    if (e) throw e;
     // console.log(result);
-    console.log("::::::"+r.file);
-    res.redirect('/groups')
-  })
+    console.log("::" + filepath);
+    res.redirect("/groups");
+  });
 });
 
-app.get("/group-edit",(r,res)=>{
+app.get("/group-edit", (r, res) => {
   res.render("edit-group");
-})
+});
 
-app.get('/group-delete',(r,res)=>{
-  res.send("R");
-})
+app.get("/group-delete", (r, res) => {
+  let sql = "DELETE FROM groups WHERE id = " + r.query.id;
+  console.log(sql);
+  con.query(sql, (e, result) => {
+    if (e) throw e;
+    console.log(result);
+    res.redirect("/groups");
+  });
+});
 
 app.listen(4000, () => {
   console.log("http://localhost:4000");
