@@ -1,0 +1,223 @@
+<%-include('component/header')%>
+<%-include('component/sidebar')%>
+
+            <!-- Main Content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Create New Group</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group me-2">
+                            <a href="/groups" class="btn btn-sm btn-outline-secondary">
+                                <i class="fas fa-times"></i> Cancel
+                            </a>
+                            <button type="submit" form="groupForm" class="btn btn-sm btn-primary">
+                                <i class="fas fa-save"></i> Save Group
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="groupForm" action="/create-group" method="post">
+                    <!-- Group Picture -->
+                    <div class="row mb-4">
+                        <div class="col-md-12 text-center">
+                            <div class="group-avatar mx-auto mb-3" id="groupAvatarContainer">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <input type="file" name="groupUpload" class="d-none" id="groupUpload" accept="image/*">
+                            <button type="button" class="btn btn-outline-secondary" onclick="document.getElementById('groupUpload').click()">
+                                <i class="fas fa-camera me-2"></i>Add Group Photo
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Group Information -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Group Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="groupName" class="form-label">Group Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="groupName" id="groupName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="groupDescription" class="form-label">Description</label>
+                                <textarea class="form-control" name="groupDescription" id="groupDescription" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add Members -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="fas fa-user-plus me-2"></i>Add Members</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <!-- <div class="col-md-6">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search contacts..." id="contactSearch">
+                                        <button class="btn btn-outline-secondary" type="button">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div> -->
+                                <div class="col-md-6 text-md-end">
+                                    <span class="badge bg-primary" id="selectedCount">0 contacts selected</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <h6 class="mb-3">Available Contacts</h6>
+                                    <div class="list-group" id="availableContacts" style="max-height: 400px; overflow-y: auto;">
+                                        <!-- Contact cards will be added here dynamically -->
+                                         <% contact.forEach((i)=>{ %>
+                                        <div class="list-group-item contact-card" data-id="<%=i.id%>">
+                                            <div class="d-flex align-items-center">
+                                                <img src="<%=i.profileUpload%>" alt="Profile" class="rounded-circle me-3" width="40">
+                                                <div>
+                                                    <h6 class="mb-0"><%=i.firstName%> <%=i.lastName%></h6>
+                                                    <small class="text-muted"><%=i.email%></small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% }) %>
+                                       
+                                    </div>
+                                </div>
+                                <div class="col-md-2 d-flex align-items-center justify-content-center">
+                                    <div class="d-grid gap-2">
+                                        <button type="button" class="btn btn-outline-primary" id="addSelected">
+                                            <i class="fas fa-arrow-right"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-outline-secondary" id="removeSelected">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <h6 class="mb-3">Group Members</h6>
+                                    <div class="list-group" id="groupMembers" style="max-height: 400px; overflow-y: auto;">
+                                        <!-- Selected members will appear here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="d-flex justify-content-end">
+                        <a href="/groups" type="button" class="btn btn-outline-secondary me-2">
+                            <i class="fas fa-times"></i> Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Create Group
+                        </button>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+    document.getElementById('groupUpload').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const avatarContainer = document.getElementById('groupAvatarContainer');
+                avatarContainer.innerHTML = '';
+                const img = document.createElement('img');
+                img.src = event.target.result;
+                img.className = 'group-avatar';
+                img.alt = 'Group Photo';
+                avatarContainer.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const availableContacts = document.getElementById('availableContacts');
+        const groupMembers = document.getElementById('groupMembers');
+        const addSelectedBtn = document.getElementById('addSelected');
+        const removeSelectedBtn = document.getElementById('removeSelected');
+        const selectedCount = document.getElementById('selectedCount');
+        const form = document.getElementById('groupForm');
+
+        // Toggle selection on available contacts
+        availableContacts.addEventListener('click', function(e) {
+            const contactCard = e.target.closest('.contact-card');
+            if (contactCard) {
+                contactCard.classList.toggle('selected-contact');
+                updateSelectedCount();
+            }
+        });
+
+        // Toggle selection on group members
+        groupMembers.addEventListener('click', function(e) {
+            const memberCard = e.target.closest('.contact-card');
+            if (memberCard) {
+                memberCard.classList.toggle('selected-contact');
+                updateSelectedCount();
+            }
+        });
+
+        // Move selected contacts to group members
+        addSelectedBtn.addEventListener('click', function() {
+            const selected = availableContacts.querySelectorAll('.selected-contact');
+            selected.forEach(contact => {
+                contact.classList.remove('selected-contact');
+                groupMembers.appendChild(contact);
+            });
+            updateSelectedCount();
+            syncHiddenInputs();
+        });
+
+        // Move selected members back to available contacts
+        removeSelectedBtn.addEventListener('click', function() {
+            const selected = groupMembers.querySelectorAll('.selected-contact');
+            selected.forEach(contact => {
+                contact.classList.remove('selected-contact');
+                availableContacts.appendChild(contact);
+            });
+            updateSelectedCount();
+            syncHiddenInputs();
+        });
+
+        // Update selected count badge
+        function updateSelectedCount() {
+            const totalMembers = groupMembers.querySelectorAll('.contact-card').length;
+            selectedCount.textContent = `${totalMembers} ${totalMembers === 1 ? 'member' : 'members'} selected`;
+        }
+
+        // Sync hidden inputs for form submission
+        function syncHiddenInputs() {
+            // Remove old hidden inputs
+            form.querySelectorAll('input[name="members"]').forEach(input => input.remove());
+
+            // Add new hidden inputs based on current group members
+            const members = groupMembers.querySelectorAll('.contact-card');
+            members.forEach(member => {
+                const name = member.getAttribute('data-name');
+                const email = member.getAttribute('data-email');
+                const id = member.getAttribute('data-id');
+
+                const hiddenInput = document.createElement('input');
+                hiddenInput.type = 'hidden';
+                hiddenInput.name = 'members[]';
+                // hiddenInput.value = [name,email,id];
+                hiddenInput.value = id;
+                
+
+                form.appendChild(hiddenInput);
+            });
+        }
+    });
+</script>
+    <%-include('component/footer')%>
