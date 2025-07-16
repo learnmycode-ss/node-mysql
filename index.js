@@ -323,7 +323,24 @@ app.get("/groups", (r, res) => {
 });
 
 app.get("/group-view", (r, res) => {
-  res.render("show-group");
+  let id = r.query.id;
+  if (!id) {
+    res.send("Error");
+  }
+  let sql = `SELECT * FROM groups WHERE id = ${id} limit 1`;
+  con.query(sql, (e, result) => {
+    if (e) throw e;
+    let arrayRes = result[0].member.split(",");
+    let cdata;
+    let sql2 = `SELECT * FROM contact WHERE id IN (${arrayRes})`;
+    con.query(sql2, (e2, r2) => {
+      if (e2) throw e2;
+      cdata = r2;
+      console.log(cdata);
+      res.render("show-group", { g: result[0],c:cdata });
+    });
+  });
+  // res.render("show-group");
 });
 
 app.get("/create-group", (r, res) => {
@@ -337,11 +354,11 @@ app.get("/create-group", (r, res) => {
 });
 
 app.post("/create-group", upload.single("profileUpload"), (r, res) => {
-  console.log("File received:", r.file);
-  console.log("Body received:", r.body);
+  // console.log("File received:", r.file);
+  // console.log("Body received:", r.body);
   const filepath = r.file ? "upload/" + r.file.filename : "";
   const members = r.body["members[]"] || [];
-  if(!Array.isArray(members)){
+  if (!Array.isArray(members)) {
     members = [members];
   }
   const conId = members.join(","); // Joins as "2,4"
@@ -349,7 +366,7 @@ app.post("/create-group", upload.single("profileUpload"), (r, res) => {
   con.query(sql, (e, result) => {
     if (e) throw e;
     // console.log(result);
-    console.log("::" + filepath);
+    // console.log("::" + filepath);
     res.redirect("/groups");
   });
 });
@@ -360,10 +377,10 @@ app.get("/group-edit", (r, res) => {
 
 app.get("/group-delete", (r, res) => {
   let sql = "DELETE FROM groups WHERE id = " + r.query.id;
-  console.log(sql);
+  // console.log(sql);
   con.query(sql, (e, result) => {
     if (e) throw e;
-    console.log(result);
+    // console.log(result);
     res.redirect("/groups");
   });
 });

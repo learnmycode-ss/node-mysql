@@ -38,20 +38,22 @@
                         <img src="https://via.placeholder.com/300x300?text=Team" alt="Group" class="group-avatar mb-3">
                     </div>
                     <div class="col-md-9">
-                        <h2>Team Members</h2>
+                        <h2><%=g.groupName%></h2>
                         <p class="lead">Our core team working on the new product launch</p>
                         <div class="d-flex flex-wrap gap-2 mb-3">
                             <span class="badge bg-primary">
-                                <i class="fas fa-users me-1"></i> 8 members
+                                <i class="fas fa-users me-1"></i> <%=g.member.length%> members
                             </span>
-                            <span class="badge bg-secondary">
-                                <i class="fas fa-calendar me-1"></i> Created: 15 Jan 2023
+                            <span class="badge bg-secondary"><%const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];let d1 = new Date(g.create_at);%>
+                                <i class="fas fa-calendar me-1"></i> Created: <%=d1.getDate()%>-<%=months[d1.getMonth()] %>-<%=d1.getFullYear()%>
                             </span>
+                            <%if(g.update_at !=null){%>
                             <span class="badge bg-success">
                                 <i class="fas fa-sync-alt me-1"></i> Updated: 2 days ago
                             </span>
+                            <%}%>
                         </div>
-                        <p>This group includes all team members working on the upcoming product launch. Use this group to quickly communicate with the entire team or assign tasks.</p>
+                        <p><%=g.groupDescription%></p>
                     </div>
                 </div>
 
@@ -82,15 +84,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <%c.map((i)=>{%>
                                     <tr>
-                                        <td><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile" class="member-avatar"></td>
-                                        <td>John Smith</td>
-                                        <td>john.smith@example.com</td>
-                                        <td>(555) 123-4567</td>
-                                        <td><span class="badge bg-primary">Team Lead</span></td>
+                                        <td><img src="<%=i.profileUpload%>" alt="Profile" class="member-avatar"></td>
+                                        <td><%=i.firstName%> <%=i.lastName%></td>
+                                        <td><%=i.email%></td>
+                                        <td><%=i.mobile%></td>
+                                        <td><span class="badge bg-primary"><%=i.jobTitle%></span></td>
                                         <td>
                                             <div class="d-flex gap-2">
-                                                <a href="view.html" class="btn btn-sm btn-outline-primary action-btn" title="View">
+                                                <a href="/show-contact?id=<%=i.id%>" class="btn btn-sm btn-outline-primary action-btn" title="View">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
                                                 <button class="btn btn-sm btn-outline-danger action-btn" title="Remove">
@@ -99,57 +102,8 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profile" class="member-avatar"></td>
-                                        <td>Sarah Johnson</td>
-                                        <td>sarah.j@example.com</td>
-                                        <td>(555) 987-6543</td>
-                                        <td><span class="badge bg-success">Developer</span></td>
-                                        <td>
-                                            <div class="d-flex gap-2">
-                                                <a href="view.html" class="btn btn-sm btn-outline-primary action-btn" title="View">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <button class="btn btn-sm btn-outline-danger action-btn" title="Remove">
-                                                    <i class="fas fa-user-minus"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Profile" class="member-avatar"></td>
-                                        <td>Michael Brown</td>
-                                        <td>michael.b@example.com</td>
-                                        <td>(555) 456-7890</td>
-                                        <td><span class="badge bg-success">Developer</span></td>
-                                        <td>
-                                            <div class="d-flex gap-2">
-                                                <a href="view.html" class="btn btn-sm btn-outline-primary action-btn" title="View">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <button class="btn btn-sm btn-outline-danger action-btn" title="Remove">
-                                                    <i class="fas fa-user-minus"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Profile" class="member-avatar"></td>
-                                        <td>Emily Davis</td>
-                                        <td>emily.d@example.com</td>
-                                        <td>(555) 789-0123</td>
-                                        <td><span class="badge bg-info">Designer</span></td>
-                                        <td>
-                                            <div class="d-flex gap-2">
-                                                <a href="view.html" class="btn btn-sm btn-outline-primary action-btn" title="View">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <button class="btn btn-sm btn-outline-danger action-btn" title="Remove">
-                                                    <i class="fas fa-user-minus"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <%})%>
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -157,7 +111,7 @@
                 </div>
 
                 <!-- Group Activity -->
-                <div class="card">
+                <!-- <div class="card">
                     <div class="card-header">
                         <h5 class="mb-0">Recent Activity</h5>
                     </div>
@@ -201,7 +155,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </main>
         </div>
     </div>
