@@ -2,7 +2,6 @@ const express = require("express");
 const multer = require("multer");
 const path = require("path");
 const con = require("./config");
-const { group } = require("console");
 const app = express();
 
 // Upload File
@@ -66,7 +65,6 @@ app.get("/", (r, res) => {
     const dataSql = `SELECT * ${baseSql} ${whereClause} LIMIT ? OFFSET ?`;
     con.query(dataSql, [...values, limit, offset], (e, result) => {
       if (e) return res.status(500).send("Data Query Error");
-      console.log(result);
       res.render("home", {
         data: result,
         search,
@@ -87,7 +85,6 @@ app.get("/show-contact", (r, res) => {
       res.status(500).send("ERROR");
     }
     r[0].birthday = formatDate(r[0].birthday);
-    console.log(r[0]);
     res.render("show-contact", { d: r[0] });
   });
 });
@@ -157,7 +154,6 @@ app.get("/update-contact", (r, res) => {
     if (e) {
       res.status(500).send("Error");
     }
-    console.log(r[0]);
     r[0].birthday = formatDate(r[0].birthday, "");
     res.render("update-contact", { d: r[0] });
   });
@@ -336,7 +332,6 @@ app.get("/group-view", (r, res) => {
     con.query(sql2, (e2, r2) => {
       if (e2) throw e2;
       cdata = r2;
-      console.log(cdata);
       res.render("show-group", { g: result[0],c:cdata });
     });
   });
@@ -356,6 +351,7 @@ app.get("/create-group", (r, res) => {
 app.post("/create-group", upload.single("profileUpload"), (r, res) => {
   // console.log("File received:", r.file);
   // console.log("Body received:", r.body);
+  console.log(r.body);
   const filepath = r.file ? "upload/" + r.file.filename : "";
   const members = r.body["members[]"] || [];
   if (!Array.isArray(members)) {
@@ -383,6 +379,13 @@ app.get("/group-delete", (r, res) => {
     // console.log(result);
     res.redirect("/groups");
   });
+});
+app.get("/login", (r, res) => {
+  res.render("login");
+});
+
+app.get("/settings", (r, res) => {
+  res.render("settings");
 });
 
 app.listen(4000, () => {

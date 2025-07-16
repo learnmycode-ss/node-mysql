@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 300px;
+            height: 300px;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px;
+            border: 1px solid #ccc;
+          
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 300px;
+            height: 300px;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .title {
+            font-size: 30px;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 20px;
+            margin-top: 0;
+        }
+        .title-login {
+            font-size: 30px;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 20px;
+            margin-top: 0;
+        }
+        .link-registration {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+            text-align: center;
+            display: block;
+            width: 100%;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+    <h1 class="title title-login">Login</h1>
+    <form class="form" action="/login" method="post">
+        <input class="input" type="text" name="username" placeholder="Username">
+        <input class="input" type="password" name="password" placeholder="Password">
+        <button class="button" type="submit">Login</button>
+    </form>
+    <p>if you don't have an account <a class="link-registration" href="/registration">Registration</a></p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+</html>

@@ -1,0 +1,542 @@
+<%-include('component/header')%> <%-include('component/sidebar')%>
+
+    
+
+            <!-- Main Content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Settings</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <button class="btn btn-sm btn-outline-secondary me-2">
+                            <i class="fas fa-download"></i> Export Settings
+                        </button>
+                        <button class="btn btn-sm btn-primary">
+                            <i class="fas fa-save"></i> Save Changes
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Settings Navigation -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card settings-card">
+                            <div class="card-body">
+                                <div class="nav flex-column nav-pills" id="settings-tab" role="tablist">
+                                    <button class="nav-link active" id="profile-tab" data-bs-toggle="pill" data-bs-target="#profile" type="button">
+                                        <i class="fas fa-user-circle me-2"></i> Profile
+                                    </button>
+                                    <button class="nav-link" id="account-tab" data-bs-toggle="pill" data-bs-target="#account" type="button">
+                                        <i class="fas fa-user-shield me-2"></i> Account
+                                    </button>
+                                    <button class="nav-link" id="security-tab" data-bs-toggle="pill" data-bs-target="#security" type="button">
+                                        <i class="fas fa-lock me-2"></i> Security
+                                    </button>
+                                    <button class="nav-link" id="notifications-tab" data-bs-toggle="pill" data-bs-target="#notifications" type="button">
+                                        <i class="fas fa-bell me-2"></i> Notifications
+                                    </button>
+                                    <button class="nav-link" id="privacy-tab" data-bs-toggle="pill" data-bs-target="#privacy" type="button">
+                                        <i class="fas fa-eye-slash me-2"></i> Privacy
+                                    </button>
+                                    <button class="nav-link" id="import-export-tab" data-bs-toggle="pill" data-bs-target="#import-export" type="button">
+                                        <i class="fas fa-exchange-alt me-2"></i> Import/Export
+                                    </button>
+                                    <button class="nav-link" id="advanced-tab" data-bs-toggle="pill" data-bs-target="#advanced" type="button">
+                                        <i class="fas fa-cogs me-2"></i> Advanced
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings Content -->
+                    <div class="col-md-9">
+                        <div class="tab-content" id="settings-tabContent">
+                            <!-- Profile Settings -->
+                            <div class="tab-pane fade show active" id="profile" role="tabpanel">
+                                <div class="card settings-card mb-4">
+                                    <div class="card-header">
+                                        <h5 class="mb-0"><i class="fas fa-user-circle me-2"></i>Profile Information</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-4 text-center">
+                                                <div class="profile-avatar mx-auto mb-3" id="profileAvatarContainer">
+                                                    <div class="initials-placeholder">JS</div>
+                                                </div>
+                                                <input type="file" class="d-none" id="profileUpload" accept="image/*">
+                                                <button type="button" class="btn btn-outline-secondary mb-3" onclick="document.getElementById('profileUpload').click()">
+                                                    <i class="fas fa-camera me-2"></i>Change Photo
+                                                </button>
+                                                <p class="text-muted small">JPG, GIF or PNG. Max size 2MB</p>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <form>
+                                                    <div class="row mb-3">
+                                                        <div class="col-md-6">
+                                                            <label for="firstName" class="form-label">First Name</label>
+                                                            <input type="text" class="form-control" id="firstName" value="John">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="lastName" class="form-label">Last Name</label>
+                                                            <input type="text" class="form-control" id="lastName" value="Smith">
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="bio" class="form-label">Bio</label>
+                                                        <textarea class="form-control" id="bio" rows="3">Contact app administrator and developer</textarea>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="website" class="form-label">Website</label>
+                                                        <input type="url" class="form-control" id="website" value="https://johnsmith.dev">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="location" class="form-label">Location</label>
+                                                        <input type="text" class="form-control" id="location" value="New York, USA">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card settings-card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0"><i class="fas fa-at me-2"></i>Contact Information</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label for="email" class="form-label">Email Address</label>
+                                                    <input type="email" class="form-control" id="email" value="john.smith@example.com">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="phone" class="form-label">Phone Number</label>
+                                                    <input type="tel" class="form-control" id="phone" value="(555) 123-4567">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="address" class="form-label">Address</label>
+                                                <input type="text" class="form-control" id="address" value="123 Main St, Apt 4B">
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-4">
+                                                    <label for="city" class="form-label">City</label>
+                                                    <input type="text" class="form-control" id="city" value="New York">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="state" class="form-label">State</label>
+                                                    <input type="text" class="form-control" id="state" value="NY">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="zip" class="form-label">Zip Code</label>
+                                                    <input type="text" class="form-control" id="zip" value="10001">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="country" class="form-label">Country</label>
+                                                <select class="form-select" id="country">
+                                                    <option selected>United States</option>
+                                                    <option>Canada</option>
+                                                    <option>United Kingdom</option>
+                                                    <option>Australia</option>
+                                                    <option>Other</option>
+                                                </select>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Account Settings -->
+                            <div class="tab-pane fade" id="account" role="tabpanel">
+                                <div class="card settings-card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0"><i class="fas fa-user-shield me-2"></i>Account Settings</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="mb-3">
+                                                <label for="username" class="form-label">Username</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text">@</span>
+                                                    <input type="text" class="form-control" id="username" value="johnsmith">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="language" class="form-label">Language</label>
+                                                <select class="form-select" id="language">
+                                                    <option selected>English (United States)</option>
+                                                    <option>English (UK)</option>
+                                                    <option>Español</option>
+                                                    <option>Français</option>
+                                                    <option>Deutsch</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="timezone" class="form-label">Timezone</label>
+                                                <select class="form-select" id="timezone">
+                                                    <option selected>(UTC-05:00) Eastern Time (US & Canada)</option>
+                                                    <option>(UTC-08:00) Pacific Time (US & Canada)</option>
+                                                    <option>(UTC+00:00) London</option>
+                                                    <option>(UTC+01:00) Berlin</option>
+                                                    <option>(UTC+10:00) Sydney</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="dateFormat" class="form-label">Date Format</label>
+                                                <select class="form-select" id="dateFormat">
+                                                    <option selected>MM/DD/YYYY (e.g. 12/31/2023)</option>
+                                                    <option>DD/MM/YYYY (e.g. 31/12/2023)</option>
+                                                    <option>YYYY-MM-DD (e.g. 2023-12-31)</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-check form-switch mb-3">
+                                                <input class="form-check-input" type="checkbox" id="publicProfile" checked>
+                                                <label class="form-check-label" for="publicProfile">Public Profile</label>
+                                                <small class="text-muted d-block">Allow others to see your profile information</small>
+                                            </div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="showOnlineStatus" checked>
+                                                <label class="form-check-label" for="showOnlineStatus">Show Online Status</label>
+                                                <small class="text-muted d-block">Display when you're active on the platform</small>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Security Settings -->
+                            <div class="tab-pane fade" id="security" role="tabpanel">
+                                <div class="card settings-card mb-4">
+                                    <div class="card-header">
+                                        <h5 class="mb-0"><i class="fas fa-lock me-2"></i>Password</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="mb-3">
+                                                <label for="currentPassword" class="form-label">Current Password</label>
+                                                <input type="password" class="form-control" id="currentPassword">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="newPassword" class="form-label">New Password</label>
+                                                <input type="password" class="form-control" id="newPassword">
+                                                <div class="progress mt-2" style="height: 5px;">
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 75%"></div>
+                                                </div>
+                                                <small class="text-muted">Password strength: Good</small>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                                                <input type="password" class="form-control" id="confirmPassword">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Change Password</button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="card settings-card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0"><i class="fas fa-shield-alt me-2"></i>Two-Factor Authentication</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mb-4">
+                                            <h6>Status: <span class="badge bg-danger">Disabled</span></h6>
+                                            <p class="text-muted">Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to log in.</p>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="twoFactorOption" id="twoFactorOff" checked>
+                                                <label class="form-check-label" for="twoFactorOff">
+                                                    Off - No two-factor authentication
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="twoFactorOption" id="twoFactorSMS">
+                                                <label class="form-check-label" for="twoFactorSMS">
+                                                    SMS - Receive codes via text message
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="twoFactorOption" id="twoFactorApp">
+                                                <label class="form-check-label" for="twoFactorApp">
+                                                    Authentication App - Use an app like Google Authenticator
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-primary">Enable Two-Factor Authentication</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Notification Settings -->
+                            <div class="tab-pane fade" id="notifications" role="tabpanel">
+                                <div class="card settings-card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0"><i class="fas fa-bell me-2"></i>Notification Preferences</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <h6 class="mb-3">Email Notifications</h6>
+                                        <div class="form-check form-switch mb-3">
+                                            <input class="form-check-input" type="checkbox" id="emailNotifications" checked>
+                                            <label class="form-check-label" for="emailNotifications">Enable email notifications</label>
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="form-label">Email Frequency</label>
+                                            <select class="form-select">
+                                                <option selected>Immediately</option>
+                                                <option>Daily Digest</option>
+                                                <option>Weekly Summary</option>
+                                            </select>
+                                        </div>
+
+                                        <h6 class="mb-3">In-App Notifications</h6>
+                                        <div class="form-check form-switch mb-3">
+                                            <input class="form-check-input" type="checkbox" id="inAppNotifications" checked>
+                                            <label class="form-check-label" for="inAppNotifications">Enable in-app notifications</label>
+                                        </div>
+
+                                        <h6 class="mb-3">Notification Types</h6>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="contactUpdates" checked>
+                                            <label class="form-check-label" for="contactUpdates">Contact updates</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="groupActivity" checked>
+                                            <label class="form-check-label" for="groupActivity">Group activity</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="mentions" checked>
+                                            <label class="form-check-label" for="mentions">Mentions</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="systemMessages">
+                                            <label class="form-check-label" for="systemMessages">System messages</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="promotions">
+                                            <label class="form-check-label" for="promotions">Promotions and offers</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Privacy Settings -->
+                            <div class="tab-pane fade" id="privacy" role="tabpanel">
+                                <div class="card settings-card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0"><i class="fas fa-eye-slash me-2"></i>Privacy Settings</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <h6 class="mb-3">Profile Visibility</h6>
+                                        <div class="mb-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="visibility" id="visibilityPublic" checked>
+                                                <label class="form-check-label" for="visibilityPublic">
+                                                    Public - Anyone can see your profile
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="visibility" id="visibilityContacts">
+                                                <label class="form-check-label" for="visibilityContacts">
+                                                    Contacts Only - Only people in your contacts can see your profile
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="visibility" id="visibilityPrivate">
+                                                <label class="form-check-label" for="visibilityPrivate">
+                                                    Private - Only you can see your profile
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <h6 class="mb-3">Data Sharing</h6>
+                                        <div class="form-check form-switch mb-3">
+                                            <input class="form-check-input" type="checkbox" id="shareAnalytics" checked>
+                                            <label class="form-check-label" for="shareAnalytics">Share anonymous usage data</label>
+                                            <small class="text-muted d-block">Help us improve by sharing anonymous data about how you use the app</small>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="personalizedAds">
+                                            <label class="form-check-label" for="personalizedAds">Personalized advertising</label>
+                                            <small class="text-muted d-block">Allow us to show you relevant ads based on your activity</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Import/Export Settings -->
+                            <div class="tab-pane fade" id="import-export" role="tabpanel">
+                                <div class="card settings-card mb-4">
+                                    <div class="card-header">
+                                        <h5 class="mb-0"><i class="fas fa-upload me-2"></i>Import Data</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <label for="importFile" class="form-label">Select File</label>
+                                            <input class="form-control" type="file" id="importFile">
+                                            <small class="text-muted">Supported formats: CSV, vCard (.vcf)</small>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Import Options</label>
+                                            <select class="form-select">
+                                                <option selected>Add new contacts and update existing</option>
+                                                <option>Only add new contacts</option>
+                                                <option>Replace all contacts</option>
+                                            </select>
+                                        </div>
+                                        <button type="button" class="btn btn-primary">Import Contacts</button>
+                                    </div>
+                                </div>
+
+                                <div class="card settings-card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0"><i class="fas fa-download me-2"></i>Export Data</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <label class="form-label">Export Format</label>
+                                            <select class="form-select">
+                                                <option selected>CSV (Comma Separated Values)</option>
+                                                <option>vCard (.vcf)</option>
+                                                <option>JSON</option>
+                                                <option>XML</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Data to Include</label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="exportContacts" checked>
+                                                <label class="form-check-label" for="exportContacts">Contacts</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="exportGroups" checked>
+                                                <label class="form-check-label" for="exportGroups">Groups</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="exportSettings">
+                                                <label class="form-check-label" for="exportSettings">Settings</label>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-primary">Export Data</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Advanced Settings -->
+                            <div class="tab-pane fade" id="advanced" role="tabpanel">
+                                <div class="card settings-card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0"><i class="fas fa-cogs me-2"></i>Advanced Settings</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <label for="apiKey" class="form-label">API Key</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="apiKey" value="sk_live_1234567890abcdef" readonly>
+                                                <button class="btn btn-outline-secondary" type="button" id="copyApiKey">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                                <button class="btn btn-outline-secondary" type="button" id="regenerateApiKey">
+                                                    <i class="fas fa-sync-alt"></i>
+                                                </button>
+                                            </div>
+                                            <small class="text-muted">Use this key to authenticate with our API</small>
+                                        </div>
+                                        <div class="form-check form-switch mb-3">
+                                            <input class="form-check-input" type="checkbox" id="developerMode">
+                                            <label class="form-check-label" for="developerMode">Developer Mode</label>
+                                            <small class="text-muted d-block">Enable advanced debugging and logging options</small>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="logLevel" class="form-label">Log Level</label>
+                                            <select class="form-select" id="logLevel" disabled>
+                                                <option>Error</option>
+                                                <option>Warning</option>
+                                                <option selected>Info</option>
+                                                <option>Debug</option>
+                                                <option>Trace</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="cacheSize" class="form-label">Cache Size</label>
+                                            <select class="form-select" id="cacheSize">
+                                                <option selected>Default (100MB)</option>
+                                                <option>Small (50MB)</option>
+                                                <option>Large (250MB)</option>
+                                                <option>Custom</option>
+                                            </select>
+                                        </div>
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#resetSettingsModal">
+                                            <i class="fas fa-trash-alt me-2"></i>Reset All Settings
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Reset Settings Modal -->
+    <div class="modal fade" id="resetSettingsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Reset All Settings</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to reset all settings to their default values? This action cannot be undone.</p>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="resetConfirm">
+                        <label class="form-check-label" for="resetConfirm">I understand this will reset all my preferences</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmReset" disabled>Reset Settings</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Enable/disable reset button based on checkbox
+        document.getElementById('resetConfirm').addEventListener('change', function() {
+            document.getElementById('confirmReset').disabled = !this.checked;
+        });
+
+        // Handle profile picture upload preview
+        document.getElementById('profileUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const avatarContainer = document.getElementById('profileAvatarContainer');
+                    avatarContainer.innerHTML = '';
+                    const img = document.createElement('img');
+                    img.src = event.target.result;
+                    img.className = 'profile-avatar';
+                    img.alt = 'Profile Photo';
+                    avatarContainer.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Copy API key to clipboard
+        document.getElementById('copyApiKey').addEventListener('click', function() {
+            const apiKey = document.getElementById('apiKey');
+            apiKey.select();
+            document.execCommand('copy');
+            
+            // Show tooltip or alert that it was copied
+            alert('API key copied to clipboard!');
+        });
+    </script>
+
+
+<%-include('component/footer')%>

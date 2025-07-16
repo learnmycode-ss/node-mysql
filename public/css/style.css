@@ -79,3 +79,67 @@
             align-items: center;
             justify-content: center;
         }
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 300px;
+            height: 300px;
+            justify-content: center;
+            align-items: center;
+        }
+       
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .title{
+            font-size: 20px;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 20px;
+            margin-top: 0;
+        }
+        .sidebar-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+        .logo {
+            width: 200px;
+        }
+        .settings-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .nav-pills .nav-link.active {
+            background-color: #0d6efd;
+            font-weight: 500;
+        }
+        .nav-pills .nav-link {
+            color: #495057;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .initials-placeholder {
+            font-size: 3rem;
+            color: #6c757d;
+        }
+      
+        .settings-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }

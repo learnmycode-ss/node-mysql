@@ -42,7 +42,7 @@
                         <p class="lead">Our core team working on the new product launch</p>
                         <div class="d-flex flex-wrap gap-2 mb-3">
                             <span class="badge bg-primary">
-                                <i class="fas fa-users me-1"></i> <%=g.member.length%> members
+                                <i class="fas fa-users me-1"></i> <%=g.member.split(",").length%> members
                             </span>
                             <span class="badge bg-secondary"><%const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];let d1 = new Date(g.create_at);%>
                                 <i class="fas fa-calendar me-1"></i> Created: <%=d1.getDate()%>-<%=months[d1.getMonth()] %>-<%=d1.getFullYear()%>

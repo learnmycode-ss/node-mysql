@@ -73,17 +73,16 @@
                                     <h6 class="mb-3">Available Contacts</h6>
                                     <div class="list-group" id="availableContacts" style="max-height: 400px; overflow-y: auto;">
                                         <!-- Contact cards will be added here dynamically -->
-                                         <% contact.forEach((i)=>{ %>
-                                        <div class="list-group-item contact-card" data-id="<%=i.id%>">
+                                        
+                                        <div class="list-group-item contact-card" data-id="">
                                             <div class="d-flex align-items-center">
-                                                <img src="<%=i.profileUpload%>" alt="Profile" class="rounded-circle me-3" width="40">
+                                                <img src="" alt="Profile" class="rounded-circle me-3" width="40">
                                                 <div>
-                                                    <h6 class="mb-0"><%=i.firstName%> <%=i.lastName%></h6>
-                                                    <small class="text-muted"><%=i.email%></small>
+                                                    <h6 class="mb-0"></h6>
+                                                    <small class="text-muted"></small>
                                                 </div>
                                             </div>
                                         </div>
-                                        <% }) %>
                                        
                                     </div>
                                 </div>
